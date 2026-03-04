@@ -15,20 +15,20 @@
   <!-- Joint states (always) -->
   <node pkg="joint_state_publisher" exec="joint_state_publisher" output="screen">
     <param name="use_sim_time" value="$(var use_sim_time)"/>
+    <param name="robot_description" value ="$(command '$(find-exec xacro) $(find-pkg-share wally_boxxy)/description/robot.urdf.xacro')"/>
   </node>
 
   <!-- Optional GUI -->
   <node if="$(var gui)" pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" output="screen">
     <param name="use_sim_time" value="$(var use_sim_time)"/>
+    <param name="robot_description" value ="$(command '$(find-exec xacro) $(find-pkg-share wally_boxxy)/description/robot.urdf.xacro')"/>
   </node>
 
   <!-- Publishes TF from robot_description + joint_states -->
   <node pkg="robot_state_publisher" exec="robot_state_publisher" output="screen">
     <param name="use_sim_time" value="$(var use_sim_time)"/>
-    <param name="robot_description" value="$(var robot_description)"/>
-  </node>
-
-  
+    <param name="robot_description" value ="$(command '$(find-exec xacro) $(find-pkg-share wally_boxxy)/description/robot.urdf.xacro')"/>
+  </node>  
 
   <!-- Gazebo -->
   <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
@@ -37,7 +37,13 @@
 
   <!-- Spawn -->
   <node pkg="ros_gz_sim" exec="create" output="screen"
-        args="-name wally_boxxy -topic /robot_description"/>
+        args="-name wally_boxxy -topic /robot_description">
+  </node>
+
+  <node pkg="ros_gz_bridge" exec="parameter_bridge" output="screen">
+        <param name="config_file" value="$(find-pkg-share wally_boxxy)/config/gazebo_bridge.yaml"/>
+  </node>
+
 
   <!-- RViz -->
   <node if="$(var rviz)" pkg="rviz2" exec="rviz2" output="screen"
