@@ -3,6 +3,8 @@
 
     <xacro:include filename="$(find wally_boxxy)/description/common_propreties.xacro" />
     <xacro:include filename="$(find wally_boxxy)/description/robot_core.xacro" />
+    <xacro:include filename="$(find wally_boxxy)/description/gazebo_control.xacro" />
+    <xacro:include filename="$(find wally_boxxy)/description/lidar.xacro" />
     
 
 </robot>

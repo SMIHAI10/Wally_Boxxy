@@ -1,0 +1,382 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-systems'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cone'>
+      <pose>4.6082326563889637 1.7290855300913666 0.49999999993296756 5.2539640855983005e-17 -7.7132841040852797e-10 -1.1914182736739698e-22</pose>
+      <link name='cone_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.074999999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.074999999999999997</iyy>
+            <iyz>0</iyz>
+            <izz>0.074999999999999997</izz>
+          </inertia>
+          <mass>1</mass>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='cone_collision'>
+          <geometry>
+            <cone>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cone>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='cone_visual'>
+          <geometry>
+            <cone>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cone>
+          </geometry>
+          <material>
+            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
+            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='sphere'>
+      <pose>3.0596344931094208 -2.0032747495673799 0.499999999902001 0 0 0</pose>
+      <link name='sphere_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.10000000000000001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.10000000000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.10000000000000001</izz>
+          </inertia>
+          <mass>1</mass>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='sphere_collision'>
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='sphere_visual'>
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
+            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='box'>
+      <pose>1.5438130117410669 2.447030005472036 0.49999999990199806 6.2287739151293738e-22 9.3279666454713669e-22 -3.6315533669320137e-22</pose>
+      <link name='box_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.16666</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.16666</iyy>
+            <iyz>0</iyz>
+            <izz>0.16666</izz>
+          </inertia>
+          <mass>1</mass>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='box_collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
+            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sofa/3</uri>
+      <name>Sofa</name>
+      <pose>-2.5073193129810041 1.8120676463029848 0.00011990061410731367 7.8247314229229823e-09 5.3802704249929613e-09 1.6201394625637975e-11</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/minisofa/3</uri>
+      <name>MiniSofa</name>
+      <pose>0.46646292500853759 -3.4930694425077542 -0.00092502974501097225 -7.0146968831796905e-09 -1.7140262316589153e-08 2.1012606603752437e-08</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone</name>
+      <pose>2.6780621840465861 -0.52361339645085425 -7.5154269093309727e-08 -3.0973781392738183e-07 -3.770519878655244e-09 5.5847334847368532e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_0</name>
+      <pose>2.8842150612640438 0.72996157903302705 -8.8946555694490436e-08 -2.6513865185279286e-07 1.5044359813990212e-07 1.932438437313939e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_1</name>
+      <pose>4.2182781948916626 -0.54016561468887414 -8.8053378165587539e-08 -2.666634546011816e-07 1.4663476530498513e-07 1.9911562611218665e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_2</name>
+      <pose>4.1800421181255976 0.73268970412077872 -2.6624600430597001e-11 1.1926203371306012e-21 -1.6805130700844992e-21 6.9614549152590516e-33</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_3</name>
+      <pose>6.1933342060577132 0.32596194322109395 -2.6624600430597001e-11 1.0299900112577756e-21 -1.0842018752174718e-21 1.8102649326288624e-33</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_4</name>
+      <pose>6.7934744180881852 -0.40514736962309417 -8.0372583680769522e-08 -2.4316658232315351e-07 1.3639147137206889e-07 2.0699747299570819e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_5</name>
+      <pose>6.8571888945043593 -1.3619023693320265 -2.6624600430597001e-11 1.4636708802519774e-21 -1.5991979071480865e-21 6.4033102607448109e-33</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_6</name>
+      <pose>4.8826420851742789 -1.1789524415804995 -2.6624600430597001e-11 2.0057719664947297e-21 -2.7105051339457284e-21 1.6820246775250989e-32</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_7</name>
+      <pose>5.0874332872466832 -2.0073477704373501 -1.7298261738215659e-09 -9.4244848015611541e-09 -3.0817293795428888e-09 2.0712188403614292e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_8</name>
+      <pose>5.0836278829300445 -2.902808554414213 -2.6624600428862277e-11 2.1141921837432802e-21 -2.9544506227549671e-21 1.8433552616782408e-32</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_9</name>
+      <pose>6.947930741215858 -2.3137604864994961 -1.7526732294134775e-09 -9.4546282664447881e-09 -3.1357353160294603e-09 2.0712877730331635e-13</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
+      <name>Construction Cone_10</name>
+      <pose>6.9459482424406298 -3.2188378652728216 -2.6624600428862277e-11 1.2468304457548765e-21 -2.1412989933908384e-21 1.069294171041109e-32</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall</name>
+      <pose>-6.1650430513724217 -9.5339032357143481 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_1</name>
+      <pose>-6.2165027324118523 9.7900419311849873 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_2</name>
+      <pose>1.2636847821395492 9.8639785181607493 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/cutout wall/2</uri>
+      <name>cutout_wall</name>
+      <pose>5.2713637760213619 10.088212683110363 0 0 0 0</pose>
+    </include>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='spotlight' type='spot'>
+      <pose>32.508728363218069 2.5098722828794937 2 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0 0 -1</direction>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <attenuation>
+        <range>4</range>
+        <linear>0.5</linear>
+        <constant>0.20000000000000001</constant>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0.10000000000000001</inner_angle>
+        <outer_angle>0.5</outer_angle>
+        <falloff>0.80000000000000004</falloff>
+      </spot>
+    </light>
+    <light name='pointlight' type='point'>
+      <pose>-4.5886599162880977 -3.8820774787054502 2 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0 0 -1</direction>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <attenuation>
+        <range>4</range>
+        <linear>0.5</linear>
+        <constant>0.20000000000000001</constant>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='directionallight' type='directional'>
+      <pose>-1.5853616064417766 -1.3728077429855365 2 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0 0 -1</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

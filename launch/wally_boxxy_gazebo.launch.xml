@@ -1,0 +1,48 @@
+<launch>
+
+  <arg name="use_sim_time" default="true"/>
+  <arg name="rviz" default="true"/>
+  <arg name="gui" default="true"/>
+
+  <let name="xacro_path"
+       value="$(find-pkg-share wally_boxxy)/description/robot.urdf.xacro"/>
+
+  <arg name="world" default="$(find-pkg-share wally_boxxy)/worlds/test_world.sdf"/>
+
+  <let name="robot_description"
+       value="$(command '$(find-exec xacro) $(var xacro_path)')"/>
+
+  <!-- Joint states (always) -->
+  <node pkg="joint_state_publisher" exec="joint_state_publisher" output="screen">
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+  <!-- Optional GUI -->
+  <node if="$(var gui)" pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" output="screen">
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+  <!-- Publishes TF from robot_description + joint_states -->
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" output="screen">
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+    <param name="robot_description" value="$(var robot_description)"/>
+  </node>
+
+  
+
+  <!-- Gazebo -->
+  <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
+    <arg name="gz_args" value="-r $(var world)"/>
+  </include>
+
+  <!-- Spawn -->
+  <node pkg="ros_gz_sim" exec="create" output="screen"
+        args="-name wally_boxxy -topic /robot_description"/>
+
+  <!-- RViz -->
+  <node if="$(var rviz)" pkg="rviz2" exec="rviz2" output="screen"
+        args="-d $(find-pkg-share wally_boxxy)/rviz/urdf_config.rviz">
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+</launch>
