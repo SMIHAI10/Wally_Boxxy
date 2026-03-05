@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="wally_boxxy">
 
     <xacro:include filename="$(find wally_boxxy)/description/common_propreties.xacro" />
     <xacro:include filename="$(find wally_boxxy)/description/robot_core.xacro" />
     <xacro:include filename="$(find wally_boxxy)/description/gazebo_control.xacro" />
-    <xacro:include filename="$(find wally_boxxy)/description/lidar.xacro" />
+    <!-- <xacro:include filename="$(find wally_boxxy)/description/lidar.xacro" /> -->
+    <xacro:include filename="$(find wally_boxxy)/description/camera.xacro" />
     
 
 </robot>

@@ -1,6 +1,6 @@
 <sdf version='1.10'>
   <world name='empty'>
-    <physics name='1ms' type='ignored'>
+    <physics name='1ms' type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>1000</real_time_update_rate>
@@ -9,7 +9,7 @@
     <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
     <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
     <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
-    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-systems'>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
       <render_engine>ogre2</render_engine>
     </plugin>
     <gravity>0 0 -9.8000000000000007</gravity>
@@ -69,27 +69,26 @@
       <pose>0 0 0 0 0 0</pose>
       <self_collide>false</self_collide>
     </model>
-    <model name='cone'>
-      <pose>4.6082326563889637 1.7290855300913666 0.49999999993296756 5.2539640855983005e-17 -7.7132841040852797e-10 -1.1914182736739698e-22</pose>
-      <link name='cone_link'>
+    <model name='wally_boxxy'>
+      <link name='base_link'>
         <inertial>
+          <pose>0.0028846153846154299 0 0.085000000000000034 0 0 0</pose>
+          <mass>5.1999999999999993</mass>
           <inertia>
-            <ixx>0.074999999999999997</ixx>
+            <ixx>0.02146566666666665</ixx>
             <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.074999999999999997</iyy>
+            <ixz>0.0002500000000000154</ixz>
+            <iyy>0.043505730769230727</iyy>
             <iyz>0</iyz>
-            <izz>0.074999999999999997</izz>
+            <izz>0.055547397435897379</izz>
           </inertia>
-          <mass>1</mass>
-          <pose>0 0 0 0 0 0</pose>
         </inertial>
-        <collision name='cone_collision'>
+        <collision name='base_link_fixed_joint_lump__chassis_collision'>
+          <pose>0 0 0.085000000000000006 0 0 0</pose>
           <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
+            <box>
+              <size>0.29999999999999999 0.20000000000000001 0.10000000000000001</size>
+            </box>
           </geometry>
           <surface>
             <friction>
@@ -99,44 +98,11 @@
             <contact/>
           </surface>
         </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
-          </geometry>
-          <material>
-            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
-            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
-            <specular>1 1 1 1</specular>
-          </material>
-        </visual>
-        <pose>0 0 0 0 0 0</pose>
-        <enable_wind>false</enable_wind>
-      </link>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='sphere'>
-      <pose>3.0596344931094208 -2.0032747495673799 0.499999999902001 0 0 0</pose>
-      <link name='sphere_link'>
-        <inertial>
-          <inertia>
-            <ixx>0.10000000000000001</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.10000000000000001</iyy>
-            <iyz>0</iyz>
-            <izz>0.10000000000000001</izz>
-          </inertia>
-          <mass>1</mass>
-          <pose>0 0 0 0 0 0</pose>
-        </inertial>
-        <collision name='sphere_collision'>
+        <collision name='base_link_fixed_joint_lump__caster_wheel_collision_1'>
+          <pose>0.10000000000000001 0 0.035000000000000003 0 0 0</pose>
           <geometry>
             <sphere>
-              <radius>0.5</radius>
+              <radius>0.035000000000000003</radius>
             </sphere>
           </geometry>
           <surface>
@@ -147,26 +113,261 @@
             <contact/>
           </surface>
         </collision>
-        <visual name='sphere_visual'>
+        <collision name='base_link_fixed_joint_lump__laser_frame_collision_2'>
+          <pose>0.050000000000000017 0 0.13500000000000001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.050000000000000003</length>
+              <radius>0.050000000000000003</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='base_link_fixed_joint_lump__chassis_visual'>
+          <pose>0 0 0.085000000000000006 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.29999999999999999 0.20000000000000001 0.10000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0 0 1 1</diffuse>
+            <ambient>0 0 1 1</ambient>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__caster_wheel_visual_1'>
+          <pose>0.10000000000000001 0 0.035000000000000003 0 0 0</pose>
           <geometry>
             <sphere>
-              <radius>0.5</radius>
+              <radius>0.035000000000000003</radius>
             </sphere>
           </geometry>
           <material>
-            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
-            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
-            <specular>1 1 1 1</specular>
+            <diffuse>1 0.625 0 1</diffuse>
+            <ambient>1 0.625 0 1</ambient>
           </material>
         </visual>
+        <visual name='base_link_fixed_joint_lump__laser_frame_visual_2'>
+          <pose>0.050000000000000017 0 0.16 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.050000000000000003</length>
+              <radius>0.050000000000000003</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>1 0 0 1</diffuse>
+            <ambient>1 0 0 1</ambient>
+          </material>
+        </visual>
+        <sensor name='laser' type='ray'>
+          <update_rate>10</update_rate>
+          <visualize>true</visualize>
+          <always_on>true</always_on>
+          <topic>/model/wally_boxxy/scan</topic>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415899999999999</min_angle>
+                <max_angle>3.1415899999999999</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.29999999999999999</min>
+              <max>12</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <pose>0.050000000000000003 0 0.13500000000000001 0 0 0</pose>
+        </sensor>
         <pose>0 0 0 0 0 0</pose>
         <enable_wind>false</enable_wind>
       </link>
+      <joint name='left_wheel_joint' type='revolute'>
+        <pose>-1.3877787807814457e-17 -2.7755575615628914e-17 -1.3877787807814457e-17 0 0 5.5511151231257827e-17</pose>
+        <parent>base_link</parent>
+        <child>left_wheel</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='left_wheel'>
+        <pose>-0.090000000000001412 0.12000000000000031 0.054999999999999986 1.5707963267948948 -1.0496642257943662 -3.1415926535897905</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.10000000000000001</mass>
+          <inertia>
+            <ixx>8.8958333333333332e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>8.8958333333333332e-05</iyy>
+            <iyz>0</iyz>
+            <izz>0.00015124999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='left_wheel_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.040000000000000001</length>
+              <radius>0.055</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='left_wheel_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.040000000000000001</length>
+              <radius>0.055</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>1 0 1 1</diffuse>
+            <ambient>1 0 1 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='right_wheel_joint' type='revolute'>
+        <pose>-1.3877787807814457e-17 1.3877787807814457e-17 5.5511151231257827e-17 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>right_wheel</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='right_wheel'>
+        <pose>-0.090000000000001301 -0.12000000000000019 0.055000000000000028 1.5707963267948959 0.79060749753726711 4.735007749201065e-16</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.10000000000000001</mass>
+          <inertia>
+            <ixx>8.8958333333333332e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>8.8958333333333332e-05</iyy>
+            <iyz>0</iyz>
+            <izz>0.00015124999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='right_wheel_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.040000000000000001</length>
+              <radius>0.055</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='right_wheel_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.040000000000000001</length>
+              <radius>0.055</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>1 0 1 1</diffuse>
+            <ambient>1 0 1 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <plugin name='gz::sim::systems::DiffDrive' filename='gz-sim-diff-drive-system'>
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>0.34</wheel_separation>
+        <wheel_radius>0.055</wheel_radius>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_link</child_frame_id>
+      </plugin>
+      <plugin name='gz::sim::systems::JointStatePublisher' filename='gz-sim-joint-state-publisher-system'>
+        <joint_name>left_wheel_joint</joint_name>
+        <joint_name>right_wheel_joint</joint_name>
+      </plugin>
+      <frame name='caster_wheel_joint' attached_to='chassis'>
+        <pose>0.25 0 0 0 0 0</pose>
+      </frame>
+      <frame name='caster_wheel' attached_to='caster_wheel_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='laser_joint' attached_to='chassis'>
+        <pose>0.20000000000000001 0 0.10000000000000001 0 0 0</pose>
+      </frame>
+      <frame name='laser_frame' attached_to='laser_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_link_joint' attached_to='base_link'>
+        <pose>-0.14999999999999999 0 0.035000000000000003 0 0 0</pose>
+      </frame>
+      <frame name='chassis' attached_to='base_link_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>0.89387686155333856 0.00042773763687483415 -8.2133501062051347e-09 -2.101657976989044e-15 1.9559680688652171e-08 3.141540362136706</pose>
       <static>false</static>
       <self_collide>false</self_collide>
     </model>
     <model name='box'>
-      <pose>1.5438130117410669 2.447030005472036 0.49999999990199806 6.2287739151293738e-22 9.3279666454713669e-22 -3.6315533669320137e-22</pose>
+      <pose>2.0866386125072154 1.2225002093722601 0.49999999990199806 6.2287739151293738e-22 9.3279666454713669e-22 -3.6315533669320137e-22</pose>
       <link name='box_link'>
         <inertial>
           <inertia>
@@ -212,96 +413,55 @@
       <static>false</static>
       <self_collide>false</self_collide>
     </model>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sofa/3</uri>
-      <name>Sofa</name>
-      <pose>-2.5073193129810041 1.8120676463029848 0.00011990061410731367 7.8247314229229823e-09 5.3802704249929613e-09 1.6201394625637975e-11</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/minisofa/3</uri>
-      <name>MiniSofa</name>
-      <pose>0.46646292500853759 -3.4930694425077542 -0.00092502974501097225 -7.0146968831796905e-09 -1.7140262316589153e-08 2.1012606603752437e-08</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone</name>
-      <pose>2.6780621840465861 -0.52361339645085425 -7.5154269093309727e-08 -3.0973781392738183e-07 -3.770519878655244e-09 5.5847334847368532e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_0</name>
-      <pose>2.8842150612640438 0.72996157903302705 -8.8946555694490436e-08 -2.6513865185279286e-07 1.5044359813990212e-07 1.932438437313939e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_1</name>
-      <pose>4.2182781948916626 -0.54016561468887414 -8.8053378165587539e-08 -2.666634546011816e-07 1.4663476530498513e-07 1.9911562611218665e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_2</name>
-      <pose>4.1800421181255976 0.73268970412077872 -2.6624600430597001e-11 1.1926203371306012e-21 -1.6805130700844992e-21 6.9614549152590516e-33</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_3</name>
-      <pose>6.1933342060577132 0.32596194322109395 -2.6624600430597001e-11 1.0299900112577756e-21 -1.0842018752174718e-21 1.8102649326288624e-33</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_4</name>
-      <pose>6.7934744180881852 -0.40514736962309417 -8.0372583680769522e-08 -2.4316658232315351e-07 1.3639147137206889e-07 2.0699747299570819e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_5</name>
-      <pose>6.8571888945043593 -1.3619023693320265 -2.6624600430597001e-11 1.4636708802519774e-21 -1.5991979071480865e-21 6.4033102607448109e-33</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_6</name>
-      <pose>4.8826420851742789 -1.1789524415804995 -2.6624600430597001e-11 2.0057719664947297e-21 -2.7105051339457284e-21 1.6820246775250989e-32</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_7</name>
-      <pose>5.0874332872466832 -2.0073477704373501 -1.7298261738215659e-09 -9.4244848015611541e-09 -3.0817293795428888e-09 2.0712188403614292e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_8</name>
-      <pose>5.0836278829300445 -2.902808554414213 -2.6624600428862277e-11 2.1141921837432802e-21 -2.9544506227549671e-21 1.8433552616782408e-32</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_9</name>
-      <pose>6.947930741215858 -2.3137604864994961 -1.7526732294134775e-09 -9.4546282664447881e-09 -3.1357353160294603e-09 2.0712877730331635e-13</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/construction cone/3</uri>
-      <name>Construction Cone_10</name>
-      <pose>6.9459482424406298 -3.2188378652728216 -2.6624600428862277e-11 1.2468304457548765e-21 -2.1412989933908384e-21 1.069294171041109e-32</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
-      <name>grey_wall</name>
-      <pose>-6.1650430513724217 -9.5339032357143481 0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
-      <name>grey_wall_1</name>
-      <pose>-6.2165027324118523 9.7900419311849873 0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
-      <name>grey_wall_2</name>
-      <pose>1.2636847821395492 9.8639785181607493 0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/sorin-mihai/.gz/fuel/fuel.gazebosim.org/openrobotics/models/cutout wall/2</uri>
-      <name>cutout_wall</name>
-      <pose>5.2713637760213619 10.088212683110363 0 0 0 0</pose>
-    </include>
+    <model name='cylinder'>
+      <pose>2.3058438367631773 -1.194276302730291 0.49999942638036005 -5.2622132570414884e-20 4.6790505153527057e-19 5.2238220053243102e-21</pose>
+      <link name='cylinder_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.14580000000000001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.14580000000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <mass>1</mass>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='cylinder_collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='cylinder_visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
+            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
     <light name='sun' type='directional'>
       <pose>0 0 10 0 0 0</pose>
       <cast_shadows>true</cast_shadows>
@@ -311,66 +471,9 @@
       <specular>0.200000003 0.200000003 0.200000003 1</specular>
       <attenuation>
         <range>1000</range>
-        <linear>0.01</linear>
-        <constant>0.90000000000000002</constant>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
-    </light>
-    <light name='spotlight' type='spot'>
-      <pose>32.508728363218069 2.5098722828794937 2 0 0 0</pose>
-      <cast_shadows>true</cast_shadows>
-      <intensity>1</intensity>
-      <direction>0 0 -1</direction>
-      <diffuse>0.5 0.5 0.5 1</diffuse>
-      <specular>0.5 0.5 0.5 1</specular>
-      <attenuation>
-        <range>4</range>
-        <linear>0.5</linear>
-        <constant>0.20000000000000001</constant>
-        <quadratic>0.01</quadratic>
-      </attenuation>
-      <spot>
-        <inner_angle>0.10000000000000001</inner_angle>
-        <outer_angle>0.5</outer_angle>
-        <falloff>0.80000000000000004</falloff>
-      </spot>
-    </light>
-    <light name='pointlight' type='point'>
-      <pose>-4.5886599162880977 -3.8820774787054502 2 0 0 0</pose>
-      <cast_shadows>false</cast_shadows>
-      <intensity>1</intensity>
-      <direction>0 0 -1</direction>
-      <diffuse>0.5 0.5 0.5 1</diffuse>
-      <specular>0.5 0.5 0.5 1</specular>
-      <attenuation>
-        <range>4</range>
-        <linear>0.5</linear>
-        <constant>0.20000000000000001</constant>
-        <quadratic>0.01</quadratic>
-      </attenuation>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
-    </light>
-    <light name='directionallight' type='directional'>
-      <pose>-1.5853616064417766 -1.3728077429855365 2 0 0 0</pose>
-      <cast_shadows>true</cast_shadows>
-      <intensity>1</intensity>
-      <direction>0 0 -1</direction>
-      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
-      <specular>0.200000003 0.200000003 0.200000003 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <linear>0.01</linear>
-        <constant>0.90000000000000002</constant>
-        <quadratic>0.001</quadratic>
+        <linear>0.0099999997764825821</linear>
+        <constant>0.89999997615814209</constant>
+        <quadratic>0.0010000000474974513</quadratic>
       </attenuation>
       <spot>
         <inner_angle>0</inner_angle>

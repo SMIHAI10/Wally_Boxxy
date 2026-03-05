@@ -13,10 +13,10 @@
        value="$(command '$(find-exec xacro) $(var xacro_path)')"/>
 
   <!-- Joint states (always) -->
-  <node pkg="joint_state_publisher" exec="joint_state_publisher" output="screen">
+  <!-- <node pkg="joint_state_publisher" exec="joint_state_publisher" output="screen">
     <param name="use_sim_time" value="$(var use_sim_time)"/>
     <param name="robot_description" value ="$(command '$(find-exec xacro) $(find-pkg-share wally_boxxy)/description/robot.urdf.xacro')"/>
-  </node>
+  </node> -->
 
   <!-- Optional GUI -->
   <node if="$(var gui)" pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" output="screen">
